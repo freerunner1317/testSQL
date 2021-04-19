@@ -25,22 +25,21 @@
 
 
 ```SQL
-	SELECT * 
+SELECT * 
+FROM 
+test_ex.authors
+WHERE
+authors.id = (SELECT 
+	books.author_id
 	FROM 
-	test_ex.authors
-	WHERE
-	authors.id = (SELECT 
-		books.author_id
-		FROM 
-		books, give_out
-		WHERE 
-		give_out.id_book = books.id
-		GROUP BY 
-		books.author_id	
-		ORDER BY
-		COUNT(books.author_id) 
-		DESC LIMIT 1)
-
+	books, give_out
+	WHERE 
+	give_out.id_book = books.id AND give_out.date_issue > DATE_ADD(CURDATE(), INTERVAL -1 YEAR)
+	GROUP BY 
+	books.author_id	
+	ORDER BY
+	COUNT(books.author_id) 
+	DESC LIMIT 1)
 
 ```
 
