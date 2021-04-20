@@ -51,7 +51,8 @@ authors.id = (SELECT
 Определение злостного читателя достигается путем вывода самого большого значения в таблице STUDENT колонке read_books. В данном столбце хранится количество прочитанных книг студентом за все время. Изменение значений в данной колонке достигается с помощью триггера
 
 ```SQL
-CREATE DEFINER=`root`@`localhost` TRIGGER `give_out_AFTER_INSERT` AFTER INSERT ON `give_out` FOR EACH ROW BEGIN
+CREATE DEFINER=`root`@`localhost` TRIGGER `give_out_AFTER_INSERT` AFTER INSERT ON `give_out` 
+	FOR EACH ROW BEGIN
 	UPDATE test_ex.students
     SET 
 		students.read_books = students.read_books + 1 
