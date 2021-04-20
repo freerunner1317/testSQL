@@ -61,6 +61,7 @@ CREATE DEFINER=`root`@`localhost` TRIGGER `give_out_AFTER_INSERT` AFTER INSERT O
 END
 ```
 
+Соответственно, чтобы найти злостного читателя нужно сделать запрос максимального значения к столбцу read_books в табл student
 
 ```python
 import mysql.connector
