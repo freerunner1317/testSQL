@@ -30,21 +30,13 @@ def execute_read_query(connection, query):
 connection = create_connection("localhost", "root", "root", "test_ex")    
 
 sql = """
-    SELECT * 
+    SELECT
+        first_name, middle_name, read_books 
     FROM 
-    test_ex.authors
-    WHERE
-    authors.id = (SELECT 
-        books.author_id
-        FROM 
-        books, give_out
-        WHERE 
-        give_out.id_book = books.id AND give_out.date_issue > DATE_ADD(CURDATE(), INTERVAL -1 YEAR)
-        GROUP BY 
-        books.author_id 
-        ORDER BY
-        COUNT(books.author_id) 
-        DESC LIMIT 1)
+        test_ex.students
+    ORDER BY
+        read_books  
+    DESC LIMIT 1  
 """
 
 users = execute_read_query(connection, sql)
